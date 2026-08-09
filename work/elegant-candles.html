@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elegant Candles — Elevare Advertising</title>
+<meta name="description" content="Campaign carousel for Elegant Candles, event candle installations in Cairo. Concept work by Elevare Advertising.">
+<meta name="theme-color" content="#121110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,400;112,600;112,900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{ --ink:#121110; --cream:#F2EFE8; --orange:#E95B3E; --muted:#B0AAA2; --seal:#A6212D; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--cream);font-family:'Inter',system-ui,sans-serif;
+  padding:0 22px calc(56px + env(safe-area-inset-bottom));overflow-x:hidden}
+.wrap{max-width:940px;margin:0 auto}
+header{padding:30px 0;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;font-size:19px;
+  letter-spacing:-.02em;color:var(--cream);text-decoration:none}
+.brand span{color:var(--orange)}
+.back{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--cream)}
+
+.hero{text-align:center;padding:24px 0 6px}
+.mark{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);margin:0 0 30px}
+.mk{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.mk img{width:min(190px,34vw);height:auto;display:block}
+.mk-a img{filter:saturate(.9)}
+.mk figcaption{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.arw{width:clamp(52px,11vw,120px);height:auto;flex:none;margin-bottom:26px}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--orange);color:var(--ink);padding:5px 10px;font-weight:500}
+h1{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-transform:uppercase;
+  line-height:.94;letter-spacing:-.02em;font-size:clamp(38px,9vw,76px);margin:16px 0 12px}
+.sub{color:var(--muted);font-size:15px;letter-spacing:.02em}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:#262421;border:1px solid #262421;margin:52px 0}
+.fact{background:var(--ink);padding:20px 18px}
+.fact .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500}
+.fact .v{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;font-size:17px;
+  text-transform:uppercase;margin-top:9px;line-height:1.15}
+
+.slides{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.slides{align-items:start}
+.slides>img{align-self:start;max-width:100%}
+.slides img{width:100%;height:auto;display:block;background:#0d0c0b;object-fit:contain}
+
+.lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:56px 0 14px}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ba figure{margin:0}
+.ba{align-items:start}
+.ba img{width:100%;height:auto;display:block;background:#0d0c0b}
+.ba figcaption{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+
+.line{height:1px;background:#262421;margin:60px 0 0}
+footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:15px 19px;
+  background:var(--orange);border:2px solid var(--orange);color:var(--ink);
+  font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-transform:uppercase;font-size:14px}
+.fine{color:#6E6963;font-size:11.5px;max-width:44ch;line-height:1.6}
+@media(max-width:620px){ .slides{gap:7px} .ba{gap:8px}
+  .mark{flex-direction:column;gap:10px}
+  .arw{transform:rotate(90deg);width:46px;margin:2px 0 6px}
+  .mk img{width:52vw} }
+
+.rv{opacity:0;transform:translateY(26px);
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s} .rv.d2{transition-delay:.16s} .rv.d3{transition-delay:.24s}
+.mk{opacity:0;transform:translateY(18px) scale(.94);
+  transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+.mk.in{opacity:1;transform:none}
+.mk-b{transition-delay:.45s}
+.arw .shaft{stroke-dasharray:96;stroke-dashoffset:96;transition:stroke-dashoffset .6s ease .25s}
+.arw .head{opacity:0;transition:opacity .3s ease .8s}
+.arw.in .shaft{stroke-dashoffset:0}
+.arw.in .head{opacity:1}
+.slides img,.ba img{will-change:transform;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.slides img:hover,.ba img:hover{transform:translateY(-6px)}
+.facts .fact{opacity:0;transform:translateY(20px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
+.facts .fact.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv,.mk,.facts .fact{opacity:1!important;transform:none!important;transition:none!important}
+  .arw .shaft{stroke-dashoffset:0} .arw .head{opacity:1}
+  .slides img:hover,.ba img:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="brand" href="../index.html">ELE<span>V</span>ARE</a>
+    <a class="back" href="index.html">← Work</a>
+  </header>
+
+  <section class="hero">
+    <div class="mark">
+      <figure class="mk mk-a"><img src="media/logo_original.png" alt="Elegant Candles logo"><figcaption>Their mark</figcaption></figure>
+      <svg class="arw" viewBox="0 0 120 40" aria-hidden="true">
+        <path class="shaft" d="M4 20 H100" fill="none" stroke="#E95B3E" stroke-width="3" stroke-linecap="round"/>
+        <path class="head" d="M88 8 L104 20 L88 32" fill="none" stroke="#E95B3E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <figure class="mk mk-b"><div id="sealwrap"><img src="media/seal.png" alt="Elegant Candles wax seal" id="seal"></div><figcaption>Pressed in wax</figcaption></figure>
+    </div>
+    <span class="tag rv">Concept</span>
+    <h1 class="rv d1">Elegant<br>Candles</h1>
+    <p class="sub rv d2">Event candle installations · Cairo</p>
+  </section>
+
+  <div class="facts">
+    <div class="fact"><div class="k">Brief</div><div class="v">Make the work<br>look like the work</div></div>
+    <div class="fact"><div class="k">Colour</div><div class="v">Taken from<br>their wax seal</div></div>
+    <div class="fact"><div class="k">Photography</div><div class="v">Rebuilt<br>from source</div></div>
+    <div class="fact"><div class="k">Output</div><div class="v">Three-slide<br>carousel</div></div>
+  </div>
+
+  <div class="slides">
+    <img class="rv" src="media/ec_1.jpg" alt="Hero slide" loading="lazy" width="900" height="1125">
+    <img class="rv d1" src="media/ec_2.jpg" alt="Craft slide" loading="lazy" width="900" height="1125">
+    <img class="rv d2" src="media/ec_3.jpg" alt="Call to action slide" loading="lazy" width="900" height="1125">
+  </div>
+
+  <p class="lbl rv">The photography — same frame, rebuilt</p>
+  <div class="ba">
+    <figure class="rv"><img src="media/ba_before.jpg" alt="Original photograph" loading="lazy"><figcaption>Before</figcaption></figure>
+    <figure class="rv d2"><img src="media/ba_after.jpg" alt="Rebuilt photograph" loading="lazy"><figcaption>After</figcaption></figure>
+  </div>
+
+  <div class="line"></div>
+  <footer>
+    <a class="btn rv" href="https://wa.me/201208633735">Start a project →</a>
+    <p class="fine rv d1">Concept work. Speculative, not a commissioned engagement.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv, .facts .fact, .mk, .arw');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){e.classList.add('in')}); return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.12});
+  els.forEach(function(e,i){
+    if(e.parentElement && e.parentElement.classList.contains('facts')){
+      e.style.transitionDelay=(i%4)*0.07+'s';
+    }
+    io.observe(e);
+  });
+  var seal=document.getElementById('sealwrap');
+  if(seal && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var ticking=false;
+    addEventListener('scroll',function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){
+        var y=Math.min(scrollY,600);
+        seal.style.transform='translateY('+(y*0.12)+'px) rotate('+(y*0.012)+'deg)';
+        ticking=false;
+      });
+    },{passive:true});
+  }
+})();
+</script>
+</body>
+</html>
