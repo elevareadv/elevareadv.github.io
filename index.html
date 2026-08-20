@@ -121,18 +121,23 @@ nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,30px)}
 
 @media(max-width:760px){
   .cine{height:420vh}
-  .cine-text{max-width:min(360px,84%);background:rgba(18,17,16,.64);-webkit-backdrop-filter:blur(14px);
-    backdrop-filter:blur(14px);border-radius:16px;padding:16px 18px;box-shadow:0 10px 34px rgba(0,0,0,.4)}
-  .cine-open{top:clamp(84px,13vh,120px)}
-  .cine-mid{max-width:min(340px,80%)}
-  .cine-final{bottom:clamp(64px,11vh,100px)}
-  .cine-h1{font-size:clamp(34px,11vw,54px)}
-  .cine-h2{font-size:clamp(26px,9vw,42px)}
-  .cine-h2--final{font-size:clamp(26px,9vw,42px)}
-  .cine-sub{margin-top:10px}
-  .cine-scrim{background:
-    linear-gradient(to bottom, rgba(18,17,16,.6) 0%, rgba(18,17,16,0) 30%),
-    linear-gradient(to top, rgba(18,17,16,.72) 0%, rgba(18,17,16,0) 40%)}
+  .cine-sticky{--cine-band:clamp(126px,21vh,180px)}
+
+  /* Reserve a solid band at the top for text; the canvas (and the mascot in it)
+     lives entirely below this line, so text and mascot never touch. */
+  .cine-canvas,.cine-static{top:var(--cine-band);bottom:0;height:auto}
+  .cine-overlay{top:0;bottom:auto;height:var(--cine-band)}
+
+  .cine-text{position:absolute;left:20px;right:20px;top:50%;bottom:auto;
+    transform:translateY(-50%);max-width:none;background:none;padding:0;border-radius:0;box-shadow:none}
+  .cine-open,.cine-mid,.cine-final{top:50%;bottom:auto;transform:translateY(-50%);max-width:none}
+  .cine-h1{font-size:clamp(30px,9vw,44px)}
+  .cine-h2{font-size:clamp(22px,7.5vw,34px)}
+  .cine-h2--final{font-size:clamp(22px,7.5vw,34px);margin-bottom:10px}
+  .cine-sub{margin-top:8px}
+  .cine-eyebrow{margin-bottom:8px}
+  .cine-final .cine-eyebrow{margin:8px 0 10px}
+  .cine-scrim{background:linear-gradient(to top, rgba(18,17,16,.68) 0%, rgba(18,17,16,0) 34%)}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -700,7 +705,7 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
 
     var BASE_DIR = 'frames/';
     var MOBILE_QUERY = matchMedia('(max-width:760px)');
-    var MIN_VISIBLE_FRACTION = 0.6; // never crop the mascot away, even on very tall phones
+    var MIN_VISIBLE_FRACTION = 1; // never crop the frame at all — always show the full source image, letterboxed if needed
     var PRIORITY_COUNT = 14;        // frames loaded eagerly before the rest trickle in
     var CONCURRENCY = 5;
 
@@ -868,7 +873,10 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
     function setupResize(){
       function resize(){
         var dpr = Math.min(devicePixelRatio || 1, 2);
-        var rect = sticky.getBoundingClientRect();
+        // measure the canvas's own box (not the full sticky area) — on mobile the
+        // canvas is inset below a reserved text band, so this keeps the mascot
+        // sized to the space it actually has, never behind the text.
+        var rect = canvas.getBoundingClientRect();
         canvas.width = Math.max(1, Math.round(rect.width * dpr));
         canvas.height = Math.max(1, Math.round(rect.height * dpr));
         if (currentDrawnIndex >= 0) drawFrame(currentDrawnIndex);
