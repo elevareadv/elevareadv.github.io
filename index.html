@@ -941,7 +941,12 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
       var midOut = smoothstep(0.44, 0.55, p);
       var midOpacity = Math.max(0, midIn - midOut);
       textMid.style.opacity = midOpacity;
-      textMid.style.transform = 'translateY(calc(-50% + ' + ((1 - midIn) * 22 + midOut * -26) + 'px))';
+      // Desktop keeps .cine-mid CSS-centered (top:50%) and needs a -50% counter-
+      // translate here to true-center it; mobile anchors it at top:0 instead (see
+      // the max-width:760px block), so the same -50% would shove it up under the
+      // header — only apply it off mobile.
+      var midBase = MOBILE_QUERY.matches ? '' : '-50% + ';
+      textMid.style.transform = 'translateY(calc(' + midBase + ((1 - midIn) * 22 + midOut * -26) + 'px))';
 
       var finalIn = smoothstep(0.74, 0.92, p);
       textFinal.style.opacity = finalIn;
