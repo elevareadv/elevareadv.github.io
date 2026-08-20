@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boujie — Elevare Advertising</title>
+<meta name="description" content="Boujie Artisan Candles — identity and packaging system built from scratch. Concept work by Elevare Advertising.">
+<meta name="theme-color" content="#121110">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,400;112,600;112,900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{ --ink:#121110; --cream:#F2EFE8; --orange:#E95B3E; --muted:#B0AAA2;
+  --bj-ink:#2B241D; --bj-blush:#DDB5A8; --bj-terra:#C98D6B; --bj-sand:#E5D0BB; --bj-cream:#F4EDE3; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--cream);font-family:'Inter',system-ui,sans-serif;
+  padding:0 22px calc(56px + env(safe-area-inset-bottom));overflow-x:hidden}
+.wrap{max-width:940px;margin:0 auto}
+header{padding:30px 0;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;font-size:19px;
+  letter-spacing:-.02em;color:var(--cream);text-decoration:none}
+.brand span{color:var(--orange)}
+.back{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--cream)}
+
+.hero{text-align:center;padding:24px 0 6px}
+.mark{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);margin:0 0 30px}
+.mk{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.mk img{width:min(190px,34vw);height:auto;display:block}
+.mk figcaption{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.blank{width:min(190px,34vw);aspect-ratio:1;border:1px dashed #3a3733;display:flex;align-items:center;
+  justify-content:center;border-radius:50%;color:#4d4945;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+.arw{width:clamp(52px,11vw,120px);height:auto;flex:none;margin-bottom:26px}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--orange);color:var(--ink);padding:5px 10px;font-weight:500}
+h1{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-transform:uppercase;
+  line-height:.94;letter-spacing:-.02em;font-size:clamp(38px,9vw,76px);margin:16px 0 12px}
+.sub{color:var(--muted);font-size:15px;letter-spacing:.02em}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:#262421;border:1px solid #262421;margin:52px 0}
+.fact{background:var(--ink);padding:20px 18px}
+.fact .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500}
+.fact .v{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;font-size:17px;
+  text-transform:uppercase;margin-top:9px;line-height:1.15}
+
+.lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:56px 0 14px}
+.lbl:first-of-type{margin-top:16px}
+
+.slides{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0;align-items:start}
+.slides img{width:100%;height:auto;display:block;background:#0d0c0b;object-fit:contain;align-self:start}
+.duo{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start;margin:16px 0}
+.duo figure{margin:0}
+.duo img{width:100%;height:auto;display:block;background:#0d0c0b}
+.duo figcaption{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+
+/* palette strip */
+.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#262421;border:1px solid #262421}
+.sw{position:relative;aspect-ratio:1/1.05;display:flex;align-items:flex-end;padding:11px;cursor:default;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1),z-index 0s}
+.sw:hover{transform:translateY(-7px) scale(1.02);z-index:3;box-shadow:0 18px 34px -18px rgba(0,0,0,.75)}
+.sw .hex{font-size:10px;letter-spacing:.1em;font-weight:600;opacity:.5;transform:translateY(4px);
+  transition:opacity .3s ease,transform .35s cubic-bezier(.22,.61,.36,1);font-variant-numeric:tabular-nums}
+.sw:hover .hex{opacity:1;transform:none}
+.sw .nm{position:absolute;top:11px;left:11px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.62}
+
+/* the mark, drawn big */
+.markshow{position:relative;background:var(--bj-cream);padding:clamp(28px,6vw,64px) clamp(20px,5vw,52px);
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.markshow .blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.9}
+.markshow .b1{width:44%;aspect-ratio:1;background:var(--bj-blush);top:-16%;right:-8%}
+.markshow .b2{width:38%;aspect-ratio:1;background:var(--bj-terra);bottom:-18%;left:-10%;opacity:.72}
+.markshow img{position:relative;z-index:2;flex:none;width:100%;max-width:520px;height:auto;display:block;
+  transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.markshow:hover img{transform:scale(1.03)}
+
+.line{height:1px;background:#262421;margin:60px 0 0}
+footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:15px 19px;
+  background:var(--orange);border:2px solid var(--orange);color:var(--ink);
+  font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-transform:uppercase;font-size:14px}
+.fine{color:#6E6963;font-size:11.5px;max-width:44ch;line-height:1.6}
+
+@media(max-width:620px){
+  .slides{grid-template-columns:1fr;gap:10px}
+  .duo{grid-template-columns:1fr;gap:10px}
+  .mark{flex-direction:column;gap:10px}
+  .arw{transform:rotate(90deg);width:46px;margin:2px 0 6px}
+  .mk img,.blank{width:52vw}
+  .sw{padding:6px;aspect-ratio:1/1.35}
+  .sw .nm{display:none}
+  .sw .hex{font-size:8px;letter-spacing:0;opacity:.75;word-break:break-all}
+  .markshow{padding:22px 16px}
+}
+
+.rv{opacity:0;transform:translateY(26px);
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s} .rv.d2{transition-delay:.16s} .rv.d3{transition-delay:.24s}
+.mk{opacity:0;transform:translateY(18px) scale(.94);
+  transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+.mk.in{opacity:1;transform:none}
+.mk-b{transition-delay:.45s}
+.arw .shaft{stroke-dasharray:96;stroke-dashoffset:96;transition:stroke-dashoffset .6s ease .25s}
+.arw .head{opacity:0;transition:opacity .3s ease .8s}
+.arw.in .shaft{stroke-dashoffset:0}
+.arw.in .head{opacity:1}
+.slides img,.duo img{will-change:transform;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.slides img:hover,.duo img:hover{transform:translateY(-6px)}
+.facts .fact{opacity:0;transform:translateY(20px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
+.facts .fact.in{opacity:1;transform:none}
+.palette .sw{opacity:0;transform:translateY(22px)}
+.palette .sw.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
+@media(prefers-reduced-motion:reduce){
+  .rv,.mk,.facts .fact,.palette .sw{opacity:1!important;transform:none!important;transition:none!important}
+  .arw .shaft{stroke-dashoffset:0} .arw .head{opacity:1}
+  .slides img:hover,.duo img:hover,.sw:hover,.markshow:hover img{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="brand" href="../index.html">ELE<span>V</span>ARE</a>
+    <a class="back" href="index.html">← Work</a>
+  </header>
+
+  <section class="hero">
+    <div class="mark">
+      <figure class="mk mk-a"><div class="blank">No brand</div><figcaption>Where it started</figcaption></figure>
+      <svg class="arw" viewBox="0 0 120 40" aria-hidden="true">
+        <path class="shaft" d="M4 20 H100" fill="none" stroke="#E95B3E" stroke-width="3" stroke-linecap="round"/>
+        <path class="head" d="M88 8 L104 20 L88 32" fill="none" stroke="#E95B3E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <figure class="mk mk-b"><div id="badgewrap"><img src="media/bj_badge.png" alt="Boujie Artisan Candles mark" id="badge"></div><figcaption>The mark</figcaption></figure>
+    </div>
+    <span class="tag rv">Concept</span>
+    <h1 class="rv d1">Boujie</h1>
+    <p class="sub rv d2">Artisan candles · Identity &amp; packaging</p>
+  </section>
+
+  <div class="facts">
+    <div class="fact"><div class="k">Brief</div><div class="v">Full identity,<br>built from nothing</div></div>
+    <div class="fact"><div class="k">Palette</div><div class="v">Warm ink<br>&amp; dusty blush</div></div>
+    <div class="fact"><div class="k">Deliverables</div><div class="v">Logo, box<br>&amp; tote system</div></div>
+    <div class="fact"><div class="k">Output</div><div class="v">Packaging<br>concept</div></div>
+  </div>
+
+  <p class="lbl rv">The mark — a lit wick through the J</p>
+  <div class="markshow rv">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <img src="media/bj_logo.svg" alt="Boujie Artisan Candles wordmark" loading="lazy">
+  </div>
+
+  <p class="lbl rv">The palette</p>
+  <div class="palette">
+    <div class="sw" style="background:#2B241D;color:#F4EDE3"><span class="nm">Ink</span><span class="hex">#2B241D</span></div>
+    <div class="sw" style="background:#C98D6B;color:#2B241D"><span class="nm">Terracotta</span><span class="hex">#C98D6B</span></div>
+    <div class="sw" style="background:#DDB5A8;color:#2B241D"><span class="nm">Blush</span><span class="hex">#DDB5A8</span></div>
+    <div class="sw" style="background:#E5D0BB;color:#2B241D"><span class="nm">Sand</span><span class="hex">#E5D0BB</span></div>
+    <div class="sw" style="background:#F4EDE3;color:#2B241D"><span class="nm">Cream</span><span class="hex">#F4EDE3</span></div>
+  </div>
+
+  <p class="lbl rv">The system — box, tote, tag</p>
+  <div class="slides">
+    <img class="rv" src="media/bj_hero.jpg" alt="Boujie tote bag, box and cards" loading="lazy" width="1254" height="1254">
+    <img class="rv d1" src="media/bj_tote.jpg" alt="Boujie tote bag" loading="lazy" width="1254" height="1254">
+    <img class="rv d2" src="media/bj_box_front.jpg" alt="Boujie box, front panel" loading="lazy" width="621" height="621">
+  </div>
+
+  <p class="lbl rv">Every panel earns its space</p>
+  <div class="duo">
+    <figure class="rv"><img src="media/bj_box_copy.jpg" alt="Boujie box, side panel with ingredients" loading="lazy"><figcaption>Side — what's in it</figcaption></figure>
+    <figure class="rv d1"><img src="media/bj_box_back.jpg" alt="Boujie box, back panel" loading="lazy"><figcaption>Back — the story</figcaption></figure>
+    <figure class="rv d2"><img src="media/bj_box_top.jpg" alt="Boujie box, top with roundel" loading="lazy"><figcaption>Top — the roundel</figcaption></figure>
+  </div>
+
+  <div class="line"></div>
+  <footer>
+    <a class="btn rv" href="https://wa.me/201208633735">Start a project →</a>
+    <p class="fine rv d1">Concept work. Speculative, not a commissioned engagement.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv, .facts .fact, .palette .sw, .mk, .arw');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){e.classList.add('in')}); return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.12});
+  els.forEach(function(e){
+    var p=e.parentElement;
+    if(p && (p.classList.contains('facts')||p.classList.contains('palette'))){
+      var sibs=Array.prototype.slice.call(p.children);
+      e.style.transitionDelay=(sibs.indexOf(e)%5)*0.07+'s';
+    }
+    io.observe(e);
+  });
+  var badge=document.getElementById('badgewrap');
+  if(badge && innerWidth>=700 && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var ticking=false;
+    addEventListener('scroll',function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){
+        var y=Math.min(scrollY,600);
+        badge.style.transform='translateY('+(y*0.12)+'px) rotate('+(y*-0.012)+'deg)';
+        ticking=false;
+      });
+    },{passive:true});
+  }
+})();
+</script>
+</body>
+</html>
