@@ -904,11 +904,10 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
     function updateTextLayer(p){
       if (!textOpen || !textMid || !textFinal) return;
 
-      var openIn = smoothstep(0, 0.05, p);
       var openOut = smoothstep(0.14, 0.24, p);
-      var openOpacity = Math.max(0, openIn - openOut);
+      var openOpacity = 1 - openOut;
       textOpen.style.opacity = openOpacity;
-      textOpen.style.transform = 'translateY(' + ((1 - openIn) * 22 + openOut * -26) + 'px)';
+      textOpen.style.transform = 'translateY(' + (openOut * -26) + 'px)';
 
       var midIn = smoothstep(0.2, 0.32, p);
       var midOut = smoothstep(0.44, 0.55, p);
