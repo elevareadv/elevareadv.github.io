@@ -121,17 +121,19 @@ nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,30px)}
 
 @media(max-width:760px){
   .cine{height:420vh}
-  .cine-sticky{--cine-band:clamp(280px,36vh,320px);--cine-header-clear:60px}
+  .cine-sticky{--cine-band:clamp(262px,28vh,290px);--cine-header-clear:60px}
 
-  /* Reserve a solid band at the top for text, clear of the fixed header; the
-     canvas (and the mascot in it) lives entirely below this line, so text
-     and mascot never touch. */
+  /* Reserve a band at the top for text, clear of the fixed header; the canvas
+     (and the mascot in it) lives entirely below this line, so text and mascot
+     never touch. Text sits right under the header-clear line rather than
+     centered in the band, so any slack falls as breathing room just above the
+     mascot instead of as dead space under the nav. */
   .cine-canvas,.cine-static{top:var(--cine-band);height:calc(100% - var(--cine-band))}
   .cine-overlay{top:var(--cine-header-clear);bottom:auto;height:calc(var(--cine-band) - var(--cine-header-clear))}
 
-  .cine-text{position:absolute;left:20px;right:20px;top:50%;bottom:auto;
-    transform:translateY(-50%);max-width:none;background:none;padding:0;border-radius:0;box-shadow:none}
-  .cine-open,.cine-mid,.cine-final{top:50%;bottom:auto;transform:translateY(-50%);max-width:none}
+  .cine-text{position:absolute;left:20px;right:20px;top:0;bottom:auto;
+    transform:none;max-width:none;background:none;padding:0;border-radius:0;box-shadow:none}
+  .cine-open,.cine-mid,.cine-final{top:0;bottom:auto;transform:none;max-width:none}
   .cine-h1{font-size:clamp(36px,10.5vw,54px)}
   .cine-h2{font-size:clamp(26px,8.8vw,42px)}
   .cine-h2--final{font-size:clamp(26px,8.8vw,42px);margin-bottom:8px}
