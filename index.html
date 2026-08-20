@@ -121,22 +121,23 @@ nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,30px)}
 
 @media(max-width:760px){
   .cine{height:420vh}
-  .cine-sticky{--cine-band:clamp(126px,21vh,180px)}
+  .cine-sticky{--cine-band:clamp(172px,27vh,214px);--cine-header-clear:60px}
 
-  /* Reserve a solid band at the top for text; the canvas (and the mascot in it)
-     lives entirely below this line, so text and mascot never touch. */
+  /* Reserve a solid band at the top for text, clear of the fixed header; the
+     canvas (and the mascot in it) lives entirely below this line, so text
+     and mascot never touch. */
   .cine-canvas,.cine-static{top:var(--cine-band);bottom:0;height:auto}
-  .cine-overlay{top:0;bottom:auto;height:var(--cine-band)}
+  .cine-overlay{top:var(--cine-header-clear);bottom:auto;height:calc(var(--cine-band) - var(--cine-header-clear))}
 
   .cine-text{position:absolute;left:20px;right:20px;top:50%;bottom:auto;
     transform:translateY(-50%);max-width:none;background:none;padding:0;border-radius:0;box-shadow:none}
   .cine-open,.cine-mid,.cine-final{top:50%;bottom:auto;transform:translateY(-50%);max-width:none}
-  .cine-h1{font-size:clamp(30px,9vw,44px)}
-  .cine-h2{font-size:clamp(22px,7.5vw,34px)}
-  .cine-h2--final{font-size:clamp(22px,7.5vw,34px);margin-bottom:10px}
-  .cine-sub{margin-top:8px}
-  .cine-eyebrow{margin-bottom:8px}
-  .cine-final .cine-eyebrow{margin:8px 0 10px}
+  .cine-h1{font-size:clamp(28px,8vw,40px)}
+  .cine-h2{font-size:clamp(20px,6.6vw,30px)}
+  .cine-h2--final{font-size:clamp(20px,6.6vw,30px);margin-bottom:8px}
+  .cine-sub{margin-top:6px}
+  .cine-eyebrow{margin-bottom:6px}
+  .cine-final .cine-eyebrow{margin:6px 0 8px}
   .cine-scrim{background:linear-gradient(to top, rgba(18,17,16,.68) 0%, rgba(18,17,16,0) 34%)}
 }
 
@@ -705,7 +706,6 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
 
     var BASE_DIR = 'frames/';
     var MOBILE_QUERY = matchMedia('(max-width:760px)');
-    var MIN_VISIBLE_FRACTION = 1; // never crop the frame at all — always show the full source image, letterboxed if needed
     var PRIORITY_COUNT = 14;        // frames loaded eagerly before the rest trickle in
     var CONCURRENCY = 5;
 
@@ -842,20 +842,21 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
     }
 
     // contain on wide/landscape containers (full 16:9 frame, letterboxed if needed);
-    // clamped cover on tall/narrow containers (crop staircase edges, never crop the mascot)
+    // on narrow/tall containers, fill the full height (never crop top/bottom) and
+    // let the sides crop as needed — the canvas clips anything past its own edges.
     function computeRect(cw, ch, sw0, sh0){
       var containerAspect = cw / ch;
       var srcAspect = sw0 / sh0;
-      var fraction = 1;
+      var scale, dw, dh;
       if (containerAspect < srcAspect) {
-        fraction = Math.max(containerAspect / srcAspect, MIN_VISIBLE_FRACTION);
+        scale = ch / sh0;
+        dw = sw0 * scale; dh = ch;
+      } else {
+        scale = Math.min(cw / sw0, ch / sh0);
+        dw = sw0 * scale; dh = sh0 * scale;
       }
-      var sw = sw0 * fraction, sh = sh0;
-      var sx = (sw0 - sw) / 2, sy = 0;
-      var scale = Math.min(cw / sw, ch / sh);
-      var dw = sw * scale, dh = sh * scale;
       var dx = (cw - dw) / 2, dy = (ch - dh) / 2;
-      return { sx: sx, sy: sy, sw: sw, sh: sh, dx: dx, dy: dy, dw: dw, dh: dh };
+      return { sx: 0, sy: 0, sw: sw0, sh: sh0, dx: dx, dy: dy, dw: dw, dh: dh };
     }
 
     function drawFrame(idx){
