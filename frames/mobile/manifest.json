@@ -3,8 +3,8 @@
   "prefix": "frame_",
   "digits": 4,
   "ext": "webp",
-  "width": 720,
-  "height": 406,
-  "aspect": 1.773399,
+  "width": 960,
+  "height": 540,
+  "aspect": 1.777778,
   "source": "extracted"
 }
