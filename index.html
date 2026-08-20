@@ -126,7 +126,7 @@ nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,30px)}
   /* Reserve a solid band at the top for text, clear of the fixed header; the
      canvas (and the mascot in it) lives entirely below this line, so text
      and mascot never touch. */
-  .cine-canvas,.cine-static{top:var(--cine-band);bottom:0;height:auto}
+  .cine-canvas,.cine-static{top:var(--cine-band);height:calc(100% - var(--cine-band))}
   .cine-overlay{top:var(--cine-header-clear);bottom:auto;height:calc(var(--cine-band) - var(--cine-header-clear))}
 
   .cine-text{position:absolute;left:20px;right:20px;top:50%;bottom:auto;
