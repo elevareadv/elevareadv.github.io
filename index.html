@@ -121,7 +121,7 @@ nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,30px)}
 
 @media(max-width:760px){
   .cine{height:420vh}
-  .cine-sticky{--cine-band:clamp(188px,29vh,230px);--cine-header-clear:60px}
+  .cine-sticky{--cine-band:clamp(196px,30vh,238px);--cine-header-clear:60px}
 
   /* Reserve a solid band at the top for text, clear of the fixed header; the
      canvas (and the mascot in it) lives entirely below this line, so text
@@ -132,9 +132,9 @@ nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,30px)}
   .cine-text{position:absolute;left:20px;right:20px;top:50%;bottom:auto;
     transform:translateY(-50%);max-width:none;background:none;padding:0;border-radius:0;box-shadow:none}
   .cine-open,.cine-mid,.cine-final{top:50%;bottom:auto;transform:translateY(-50%);max-width:none}
-  .cine-h1{font-size:clamp(30px,8.8vw,44px)}
-  .cine-h2{font-size:clamp(22px,7.4vw,34px)}
-  .cine-h2--final{font-size:clamp(22px,7.4vw,34px);margin-bottom:8px}
+  .cine-h1{font-size:clamp(36px,10.5vw,54px)}
+  .cine-h2{font-size:clamp(26px,8.8vw,42px)}
+  .cine-h2--final{font-size:clamp(26px,8.8vw,42px);margin-bottom:8px}
   .cine-sub{margin-top:6px}
   .cine-eyebrow{margin-bottom:6px}
   .cine-final .cine-eyebrow{margin:6px 0 8px}
@@ -848,8 +848,10 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
     // The mascot never occupies more than ~30% of the source frame's width and
     // stays close to horizontal center throughout the walk, so never let the
     // visible slice of the source width fall below this floor — that guarantees
-    // he's always fully on screen, however tall/narrow the phone is.
-    var MIN_VISIBLE_FRACTION = 0.5;
+    // he's always fully on screen, however tall/narrow the phone is. Set with a
+    // ~10pt safety margin over the ~30% he actually needs, so he renders as
+    // large as possible on phones without risking a clipped edge.
+    var MIN_VISIBLE_FRACTION = 0.4;
     function computeRect(cw, ch, sw0, sh0){
       var containerAspect = cw / ch;
       var srcAspect = sw0 / sh0;
