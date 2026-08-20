@@ -299,6 +299,7 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
 </head>
 <body>
 
+<div id="cine-debug" style="display:none;position:fixed;top:0;left:0;right:0;z-index:999999;background:#000;color:#0f0;font:11px/1.4 monospace;padding:8px;white-space:pre-wrap;pointer-events:none"></div>
 <div class="grain"></div>
 <div class="progress" data-ev="progress"></div>
 <div class="peek" data-ev="peek"><img data-ev="peek-img" src="" alt=""></div>
@@ -943,6 +944,30 @@ h2.foot-ttl{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;t
       updateTextLayer(currentProgress);
 
       requestAnimationFrame(tick);
+    }
+
+    function debugReport(){
+      var el = document.getElementById('cine-debug');
+      if (!el || location.search.indexOf('debug=1') === -1) return;
+      el.style.display = 'block';
+      var cr = canvas.getBoundingClientRect();
+      var stickyStyle = getComputedStyle(sticky);
+      var band = stickyStyle.getPropertyValue('--cine-band');
+      var lines = [
+        'innerWidth x innerHeight: ' + innerWidth + ' x ' + innerHeight,
+        'devicePixelRatio: ' + devicePixelRatio,
+        'reduced-motion matches: ' + reduced,
+        'mobile query matches (max-width:760px): ' + MOBILE_QUERY.matches,
+        '--cine-band computed: ' + band,
+        'canvas CSS rect: ' + Math.round(cr.width) + ' x ' + Math.round(cr.height) + ' @ top=' + Math.round(cr.top),
+        'canvas backing store: ' + canvas.width + ' x ' + canvas.height,
+        'manifest dir/count: ' + (manifest ? manifest._dir + ' / ' + manifest.count : 'not loaded'),
+        'static img hidden: ' + (staticImg ? staticImg.hidden : 'n/a')
+      ];
+      el.textContent = lines.join('\n');
+    }
+    if (location.search.indexOf('debug=1') !== -1) {
+      setInterval(debugReport, 500);
     }
 
     start();
