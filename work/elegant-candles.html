@@ -8,39 +8,69 @@
 <meta name="theme-color" content="#121110">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,400;112,600;112,900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{ --ink:#121110; --cream:#F2EFE8; --orange:#E95B3E; --muted:#B0AAA2; --seal:#A6212D; }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--ink);color:var(--cream);font-family:'Inter',system-ui,sans-serif;
+body{background:var(--ink);color:var(--cream);font-family:'Inter Tight',system-ui,sans-serif;
   padding:0 22px calc(56px + env(safe-area-inset-bottom));overflow-x:hidden}
 .wrap{max-width:940px;margin:0 auto}
 header{padding:30px 0;display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;font-size:19px;
-  letter-spacing:-.02em;color:var(--cream);text-decoration:none}
+.brand{font-family:'Unbounded',sans-serif;font-weight:800;font-size:19px;
+  letter-spacing:-.035em;color:var(--cream);text-decoration:none}
 .brand span{color:var(--orange)}
 .back{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none}
 .back:hover{color:var(--cream)}
 
 .hero{text-align:center;padding:24px 0 6px}
-.mark{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);margin:0 0 30px}
-.mk{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
-.mk img{width:min(190px,34vw);height:auto;display:block}
-.mk-a img{filter:saturate(.9)}
-.mk figcaption{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.arw{width:clamp(52px,11vw,120px);height:auto;flex:none;margin-bottom:26px}
+.mark{display:flex;align-items:center;justify-content:center;margin:0 0 26px}
+.mark img{width:min(210px,44vw);height:auto;display:block;
+  filter:drop-shadow(0 22px 44px rgba(0,0,0,.55))}
+
+/* ---- the evolution strip ---- */
+.evo{margin:56px 0 0}
+.evo-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:#262421;border:1px solid #262421}
+.step{background:var(--ink);padding:26px 18px 22px;display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:0;min-width:0}
+.step .no{font-family:'Unbounded',sans-serif;font-weight:800;
+  font-size:12px;letter-spacing:.06em;color:var(--orange);line-height:1}
+.step .plate{display:flex;align-items:center;justify-content:center;
+  width:100%;height:clamp(96px,13vw,150px);margin:18px 0 16px}
+.step .plate img{max-width:100%;max-height:100%;width:auto;height:auto;display:block}
+.step-4 .plate img{filter:drop-shadow(0 14px 26px rgba(0,0,0,.5))}
+.step h3{font-family:'Unbounded',sans-serif;font-weight:800;
+  text-transform:uppercase;font-size:13.5px;letter-spacing:-.01em;line-height:1.15;margin:0}
+.step p{font-size:12px;line-height:1.55;color:var(--muted);margin:8px 0 0;max-width:22ch}
+
+.evo-steps .step{opacity:0;transform:translateY(22px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
+.evo-steps .step.in{opacity:1;transform:none}
+.step-4 .plate img{transition:transform .5s cubic-bezier(.34,1.4,.64,1) .28s}
+.evo-steps .step-4:not(.in) .plate img{transform:scale(1.22)}
+
+@media(max-width:760px){
+  .evo-steps{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:420px){
+  .evo-steps{grid-template-columns:1fr}
+  .step{flex-direction:row;text-align:left;gap:16px;align-items:center;padding:18px}
+  .step .plate{width:76px;height:76px;margin:0;flex:none}
+  .step .no{position:absolute;opacity:0}
+  .step p{max-width:none}
+}
 .tag{display:inline-block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
   background:var(--orange);color:var(--ink);padding:5px 10px;font-weight:500}
-h1{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-transform:uppercase;
-  line-height:.94;letter-spacing:-.02em;font-size:clamp(38px,9vw,76px);margin:16px 0 12px}
+h1{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;
+  line-height:.94;letter-spacing:-.035em;font-size:clamp(32.7px,9vw,65.4px);margin:16px 0 12px}
 .sub{color:var(--muted);font-size:15px;letter-spacing:.02em}
 
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
   background:#262421;border:1px solid #262421;margin:52px 0}
 .fact{background:var(--ink);padding:20px 18px}
 .fact .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:500}
-.fact .v{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;font-size:17px;
+.fact .v{font-family:'Unbounded',sans-serif;font-weight:800;font-size:17px;
   text-transform:uppercase;margin-top:9px;line-height:1.15}
 
 .slides{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
@@ -59,33 +89,26 @@ h1{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-trans
 footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:15px 19px;
   background:var(--orange);border:2px solid var(--orange);color:var(--ink);
-  font-family:'Archivo',sans-serif;font-weight:900;font-stretch:112%;text-transform:uppercase;font-size:14px}
+  font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;font-size:14px}
 .fine{color:#6E6963;font-size:11.5px;max-width:44ch;line-height:1.6}
 @media(max-width:620px){ .slides{gap:7px} .ba{gap:8px}
-  .mark{flex-direction:column;gap:10px}
-  .arw{transform:rotate(90deg);width:46px;margin:2px 0 6px}
-  .mk img{width:52vw} }
+  .mark img{width:56vw} }
 
 .rv{opacity:0;transform:translateY(26px);
   transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
 .rv.in{opacity:1;transform:none}
 .rv.d1{transition-delay:.08s} .rv.d2{transition-delay:.16s} .rv.d3{transition-delay:.24s}
-.mk{opacity:0;transform:translateY(18px) scale(.94);
+.mark{opacity:0;transform:translateY(18px) scale(.94);
   transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
-.mk.in{opacity:1;transform:none}
-.mk-b{transition-delay:.45s}
-.arw .shaft{stroke-dasharray:96;stroke-dashoffset:96;transition:stroke-dashoffset .6s ease .25s}
-.arw .head{opacity:0;transition:opacity .3s ease .8s}
-.arw.in .shaft{stroke-dashoffset:0}
-.arw.in .head{opacity:1}
+.mark.in{opacity:1;transform:none}
 .slides img,.ba img{will-change:transform;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
 .slides img:hover,.ba img:hover{transform:translateY(-6px)}
 .facts .fact{opacity:0;transform:translateY(20px);
   transition:opacity .6s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
 .facts .fact.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .rv,.mk,.facts .fact{opacity:1!important;transform:none!important;transition:none!important}
-  .arw .shaft{stroke-dashoffset:0} .arw .head{opacity:1}
+  .rv,.mark,.facts .fact,.evo-steps .step{opacity:1!important;transform:none!important;transition:none!important}
+  .evo-steps .step-4 .plate img{transform:none!important}
   .slides img:hover,.ba img:hover{transform:none}
 }
 </style>
@@ -100,12 +123,7 @@ footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;
 
   <section class="hero">
     <div class="mark">
-      <figure class="mk mk-a"><img src="media/logo_original.png" alt="Elegant Candles logo"><figcaption>Their mark</figcaption></figure>
-      <svg class="arw" viewBox="0 0 120 40" aria-hidden="true">
-        <path class="shaft" d="M4 20 H100" fill="none" stroke="#E95B3E" stroke-width="3" stroke-linecap="round"/>
-        <path class="head" d="M88 8 L104 20 L88 32" fill="none" stroke="#E95B3E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <figure class="mk mk-b"><div id="sealwrap"><img src="media/seal.png" alt="Elegant Candles wax seal" id="seal"></div><figcaption>Pressed in wax</figcaption></figure>
+      <img src="media/seal.png" alt="Elegant Candles wax seal" id="seal">
     </div>
     <span class="tag rv">Concept</span>
     <h1 class="rv d1">Elegant<br>Candles</h1>
@@ -117,6 +135,36 @@ footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;
     <div class="fact"><div class="k">Colour</div><div class="v">Taken from<br>their wax seal</div></div>
     <div class="fact"><div class="k">Photography</div><div class="v">Rebuilt<br>from source</div></div>
     <div class="fact"><div class="k">Output</div><div class="v">Three-slide<br>carousel</div></div>
+  </div>
+
+  <p class="lbl rv">The mark — how their logo became a seal</p>
+  <div class="evo">
+    <div class="evo-steps">
+      <div class="step step-1">
+        <span class="no">01</span>
+        <span class="plate"><img src="media/logo_original.png" alt="The original Elegant Candles badge" loading="lazy"></span>
+        <h3>Their mark</h3>
+        <p>The badge as they already use it — hexagon, ring, monogram.</p>
+      </div>
+      <div class="step step-2">
+        <span class="no">02</span>
+        <span class="plate"><img src="media/ec_evo_2_monogram.png" alt="The monogram lifted out of the badge" loading="lazy"></span>
+        <h3>The monogram</h3>
+        <p>Lifted out on its own. The hexagon was doing nothing the ring wasn't.</p>
+      </div>
+      <div class="step step-3">
+        <span class="no">03</span>
+        <span class="plate"><img src="media/ec_evo_3_die.png" alt="The monogram set into a ringed stamp die" loading="lazy"></span>
+        <h3>The die</h3>
+        <p>Set inside a single hairline ring and sized to press cleanly.</p>
+      </div>
+      <div class="step step-4">
+        <span class="no">04</span>
+        <span class="plate"><img src="media/seal.png" alt="The finished mark pressed into red wax" loading="lazy"></span>
+        <h3>Pressed in wax</h3>
+        <p>Same monogram, now an object. It carries the whole carousel.</p>
+      </div>
+    </div>
   </div>
 
   <div class="slides">
@@ -140,7 +188,7 @@ footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;
 </div>
 <script>
 (function(){
-  var els=document.querySelectorAll('.rv, .facts .fact, .mk, .arw');
+  var els=document.querySelectorAll('.rv, .facts .fact, .mark, .evo-steps .step');
   if(!('IntersectionObserver' in window)){
     els.forEach(function(e){e.classList.add('in')}); return;
   }
@@ -150,12 +198,13 @@ footer{padding-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;
     });
   },{rootMargin:'0px 0px -8% 0px',threshold:.12});
   els.forEach(function(e,i){
-    if(e.parentElement && e.parentElement.classList.contains('facts')){
-      e.style.transitionDelay=(i%4)*0.07+'s';
+    if(e.parentElement && (e.parentElement.classList.contains('facts')
+        || e.parentElement.classList.contains('evo-steps'))){
+      e.style.transitionDelay=(i%4)*0.09+'s';
     }
     io.observe(e);
   });
-  var seal=document.getElementById('sealwrap');
+  var seal=document.getElementById('seal');
   if(seal && !matchMedia('(prefers-reduced-motion: reduce)').matches){
     var ticking=false;
     addEventListener('scroll',function(){
